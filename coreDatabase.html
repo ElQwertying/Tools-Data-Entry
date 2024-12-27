@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/main.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.mini.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<title>Core database</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+	<div class="container" style="min-height: 100vh;">
+		<div class="row">
+			<div class="col-12 col-md-5">
+				<div class="container-fluid py-3 px-0">
+					<a class="btn btn-success my-3" href="adminPage.html">Data entry</a>
+					<img src="images/logo big.png" class="img-fluid col-6" alt="tools logo">
+				</div>
+				<div class="bg-secondary-subtle text-center">
+					<ul id="classifications" class="list-group p-0">
+
+					</ul>
+				</div>
+
+			</div>
+			<div class="col-12 col-md-7">
+				<div id="classification_data" class="row gap-3 mt-5 p-5">
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="bg-light py-2 mt-5">
+		<div class="container">
+			<span>Developed by Omar Hesham</span>
+		</div>
+	</footer>
+	<script src="dist/coreData.js"></script>
+	<script src="dist/bootstrap.min.js"></script>
+
+</body>
+
+</html>

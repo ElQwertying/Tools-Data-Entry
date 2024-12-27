@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Tools</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+
+<body class="bg-light">
+    <div class="container my-5">
+        <!-- Step 1: Enter SKU -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <label for="skuInput" class="form-label">Enter SKU:</label>
+                <div class="input-group">
+                    <input type="text" id="skuInput" class="form-control" placeholder="e.g., T1032">
+                    <button id="fetchDataBtn" class="btn btn-primary">Fetch Tool Data</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Main Tool Details -->
+        <div id="mainToolDetails" class="row mb-4 d-none">
+            <h3>Main Tool Details</h3>
+            <div class="col-12 col-md-6 mb-3">
+                <label for="toolImage" class="form-label">Tool Image:</label>
+                <img id="toolImagePreview" src="#" alt="Tool Image" class="img-fluid mb-2 d-block">
+                <input type="file" id="toolImage" class="form-control">
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="toolSku" class="form-label">SKU:</label>
+                <input type="text" id="toolSku" class="form-control">
+
+                <label for="toolNameEn" class="form-label mt-3">Name (English):</label>
+                <input type="text" id="toolNameEn" class="form-control">
+
+                <label for="toolNameAr" class="form-label mt-3">Name (Arabic):</label>
+                <input type="text" id="toolNameAr" class="form-control">
+
+                <label for="toolPrice" class="form-label mt-3">Price:</label>
+                <input type="text" id="toolPrice" class="form-control">
+            </div>
+        </div>
+
+        <!-- Step 3: Group Variations -->
+        <div id="groupVariations" class="row mb-4 d-none">
+            <h3>Group Variations</h3>
+            <div id="variationsContainer" class="row">
+                <!-- Variations will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Step 4: Save Changes -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <button id="saveChangesBtn" class="btn btn-success d-none">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Placeholder for dynamic content and event handling (to be added later).
+    </script>
+</body>
+
+</html>

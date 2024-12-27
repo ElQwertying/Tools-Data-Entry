@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/main.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.mini.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<title>Data entry</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+	<div class="container mb-5">
+		<div class="row">
+			<div class="col-12 col-md-5">
+				<div class="container-fluid py-5 px-0">
+					<div class="row justify-content-around p-2 gap-2">
+						<button class="btn btn-warning text-dark col-3" id="sign-out-btn">
+							<i class="bi bi-box-arrow-left"></i> Sign out
+						</button>
+						<a class="btn btn-success col-4" href="purchases.html">Purchases</a>
+						<a class="btn btn-success col-4" href="coreDatabase.html">Core Data</a>
+					</div>
+					<div class="row">
+						<img src="images/logo big.png" class="img-fluid col-6" alt="tools logo">
+						<h1 class="col-6 h4 align-self-end m-0">Data entry</h1>
+					</div>
+				</div>
+
+				<div class="py-3 gap-3 d-flex flex-column mx-5">
+					<input type="file" id="database-file" accept="xls,xlsx" class="d-none" onchange="uploadDatabase(this)">
+					<div class="d-flex input-group">
+						<label for="database-file" class="btn btn-primary input-group-text form-control">Upload database</label>
+						<button class="btn btn-success" onclick="startUpload()"><i class="bi bi-upload"></i></button>
+					</div>
+
+					<input type="file" id="tool-img-file" style="display:none" accept="image/webp"
+						onchange="inputNewToolChanged(this)">
+					<!-- <label for="tool-img-file" type="button" class="btn btn-primary" onclick="addTool()">Add Tool</label> -->
+
+					<form class="input-group" id="toolCodeForm">
+						<input type="number" name="toolCode" id="tool-edit-code" class="form-control" onclick="this.select();">
+						<button type="submit" class="btn btn-primary" id="edit-button"><i class="bi bi-pencil-fill"></i></button>
+					</form>
+					<div id="edit-no-code" class="form-text text-danger d-none">Please enter tool code to edit.</div>
+					<div id="edit-no-path" class="form-text text-danger d-none">Tool not found.</div>
+					<!-- <div class="d-flex mt-3">
+						<button class="btn btn-primary" onclick="checkCategories()">Change categories to Arabic</button>
+						<div class="mx-2 spinner-border text-success d-none" role="status" id="categ-check"></div>
+						<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="categ-check-ok"></i>
+					</div>
+
+					<div class="d-flex mt-3">
+						<button class="btn btn-primary" onclick="checkCategoriesEn()">Change categories to English</button>
+						<div class="mx-2 spinner-border text-success d-none" role="status" id="categ-check-en"></div>
+						<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="categ-check-en-ok"></i>
+					</div> -->
+
+				</div>
+			</div>
+
+			<div class="col-md-7 col-12">
+
+				<form class="m-3" id="new-tool-form">
+					<div class="row align-items-end mt-4">
+						<div class="col-5">
+							<canvas onclick="newToolCanvasClicked()" id="compress-new-tool" width="256" height="256"
+								style="width: 100%;height: 100%;" class="w-100"></canvas>
+						</div>
+						<div class="col-7">
+
+							<label for="toolBrandNewLabel" class="form-text text-secondary">Tool Brand</label>
+							<div class="input-group mb-3">
+								<input type="text" name="toolBrandNew" id="toolBrandNewLabel" class="form-control"
+									placeholder="Brand ..." aria-describedby="Tool Brand">
+							</div>
+
+							<div class="input-group mb-3">
+								<input id="tool-youtube-new" type="text" name="toolYoutubeNew" class="form-control"
+									placeholder="YouTube video ID ..." aria-describedby="Tool Youtube">
+								<!-- <label for="tool-youtube-new" id="toolYoutubeNewLabel" class="form-text text-secondary">Youtube video
+									id</label> -->
+							</div>
+
+							<!-- <div id="toolCodeNewLabel" class="form-text text-secondary">Tool code</div> -->
+							<div class="input-group mb-3">
+								<input type="text" name="toolCodeNew" class="form-control" placeholder="TXXXX"
+									aria-describedby="Tool code" readonly disabled>
+								<button class="btn btn-warning" id="basic-addon2">
+									<i class="bi bi-pencil-fill text-dark"></i>
+								</button>
+							</div>
+
+
+							<div class="form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch" name="toolStockNew" id="tool-stock-new"
+									checked>
+								<label class="form-check-label" for="tool-stock-new">In Stock</label>
+							</div>
+
+							<img id="placeholder" src="images/download.png" class="p-5 img-fluid" alt="tool img"
+								crossorigin="anonymous" hidden>
+							<!-- src="https://montevista.greatheartsamerica.org/wp-content/uploads/sites/2/2016/11/default-placeholder.png" -->
+
+						</div>
+					</div>
+
+
+					<div>
+						<label for="arabic-name-new" class="form-text">Arabic name</label>
+						<input type="text" name="arabicNameNew" id="arabic-name-new" class="form-control"
+							aria-describedby="arnameHelp" onclick="this.select();">
+					</div>
+					<div>
+						<label for="english-name-new" class="form-text">English name</label>
+						<input type="text" name="englishNameNew" id="english-name-new" class="form-control"
+							aria-describedby="ennameHelp" onclick="this.select();">
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<label for="price-new" class="form-text">Price</label>
+							<input type="number" class="form-control" name="priceNew" id="price-new" aria-describedby="priceHelp"
+								onclick="this.select();">
+						</div>
+						<div class="col" id="before-price-hldr">
+							<label for="before-new" class="form-text">Old Price</label>
+							<input type="number" class="form-control" name="beforeNew" id="before-new" aria-describedby="beforeHelp"
+								onclick="this.select();">
+						</div>
+					</div>
+
+					<div class="my-3">
+						<label for="arabic-description-new" class="form-label">Arabic description</label>
+						<textarea class="form-control" name="arabicDescriptionNew" id="arabic-description-new" rows="3"></textarea>
+					</div>
+
+					<div class="my-3">
+						<label for="english-description-new" class="form-label">English description</label>
+						<textarea class="form-control" name="englishDescriptionNew" id="english-description-new"
+							rows="3"></textarea>
+					</div>
+
+					<div class="row mt-3">
+						<span class="col fw-bold lead">Categories</span>
+					</div>
+					<div class="row align-content-between" id="categories-new-show"></div>
+					<div id="noCategoriesNew" class="form-text text-danger d-none">Please enter tool category to submit.</div>
+
+
+					<div class="">
+						<label for="variations-section-new" class="form-label">Variations</label>
+						<div class="form-check form-switch d-none" id="is-main-new-toggle">
+							<input class="form-check-input" type="checkbox" role="switch" name="toolIsMainNew" id="tool-is-main-new"
+								checked>
+							<label class="form-check-label" for="tool-is-main-new">Is main</label>
+						</div>
+					</div>
+					<div>
+						<ul class="list-group" id="variations-section-new">
+						</ul>
+						<!-- <li class="list-group-item"> -->
+						<button type="button" class="btn btn-primary bi bi-plus-lg  mt-3"
+							onclick="addVariationControl(this,'new','New')"></button>
+						<!-- </li> -->
+					</div>
+
+
+					<div class="d-flex mt-3">
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="mx-2 spinner-border text-success d-none" role="status" id="loading-new"></div>
+						<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="success-upload-new"></i>
+
+					</div>
+
+				</form>
+
+
+
+				<form class="d-none m-3" id="edit-tool-form">
+					<!-- <form class="d-none m-3" id="edit-tool-form"> -->
+
+					<div class="row align-items-end">
+						<div class="col-md-5 col-12">
+							<img id="toolEditImg" class="w-100">
+						</div>
+						<div class="col-md-7 col-12">
+
+							<div id="toolBrandEditLabel" class="form-text text-secondary">Tool Brand</div>
+							<div class="input-group mb-3">
+								<input type="text" name="toolBrandEdit" class="form-control" placeholder="Brand ..."
+									aria-describedby="Tool Brand">
+							</div>
+
+							<div class="input-group mb-3">
+								<input id="tool-youtube-edit" type="text" name="toolYoutubeEdit" class="form-control"
+									placeholder="YouTube video ID ..." aria-describedby="Tool Youtube">
+								<!-- <label for="tool-youtube-edit" id="toolYoutubeEditLabel" class="form-text text-secondary">Youtube video
+									id</label> -->
+							</div>
+
+							<div class="input-group mb-3">
+								<input type="text" id="tool-code-edit" name="toolCodeEdit" class="form-control" readonly disabled>
+								<button class="btn btn-warning" type="button" onclick=""><i class="bi bi-pencil-fill"></i></button>
+							</div>
+
+							<div class="form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch" name="toolStockEdit" id="tool-stock-edit"
+									checked>
+								<label class="form-check-label" for="tool-stock-edit">In Stock</label>
+							</div>
+
+							<!-- <div class="input-group mb-3">
+								<input type="checkbox" id="tool-stock-edit" name="toolStockEdit" class="form-control">
+								<label for="tool-stock-edit">In stock</label>
+							</div> -->
+
+						</div>
+					</div>
+					<!-- <img id="placeholderEdit"
+            src="https://montevista.greatheartsamerica.org/wp-content/uploads/sites/2/2016/11/default-placeholder.png"
+            class="p-5 img-fluid" alt="tool img" hidden> -->
+					<div>
+						<label for="arabicNameEdit" class="form-text">Arabic name</label>
+						<input type="text" name="arabicNameEdit" class="form-control" aria-describedby="arnameHelp"
+							onclick="this.select();">
+						<!-- <div id="arnameHelp" class="form-text">Please enter Arabic name.</div> -->
+					</div>
+					<div>
+						<label for="englishNameEdit" class="form-text">English name</label>
+						<input type="text" class="form-control" name="englishNameEdit" aria-describedby="ennameHelp"
+							onclick="this.select();">
+						<!-- <div id="ennameHelp" class="form-text">Please enter English name.</div> -->
+					</div>
+					<div class="row">
+
+						<div class="mb-3 col">
+							<label for="price" class="form-text">Price</label>
+							<input type="number" class="form-control" name="priceEdit" aria-describedby="priceHelp"
+								onclick="this.select();">
+							<!-- <div id="priceHelp" class="form-text">Enter the Tool Price.</div> -->
+						</div>
+						<div class="mb-3 col" id="before-price-hldr">
+							<label for="before-price" class="form-text">Old Price</label>
+							<input type="number" class="form-control" name="beforeEdit" aria-describedby="beforeHelp"
+								onclick="this.select();">
+						</div>
+					</div>
+
+					<div class="my-3">
+						<label for="arabic-description-edit" class="form-label">Arabic description</label>
+						<textarea class="form-control" name="arabicDescriptionEdit" id="arabic-description-edit"
+							rows="3"></textarea>
+					</div>
+
+					<div class="my-3">
+						<label for="english-description-edit" class="form-label">English description</label>
+						<textarea class="form-control" name="englishDescriptionEdit" id="english-description-edit"
+							rows="3"></textarea>
+					</div>
+
+					<div class="row">
+						<h3 class="col fw-bold lead">Categories</h3>
+						<!-- <button id="add-catg-btn-to-edit" class="btn btn-success rounded-3 col-2 mx-3" type="button">+</button> -->
+					</div>
+					<div class="row" id="categories-edit-show"></div>
+					<div id="no-categories-edit" class="form-text text-danger d-none">Please enter tool category to submit.</div>
+
+					<div class="">
+						<label for="variations-section-edit" class="form-label">Variations</label>
+						<div class="form-check form-switch d-none" id="is-main-edit-toggle">
+							<input class="form-check-input" type="checkbox" role="switch" name="toolIsMainEdit" id="tool-is-main-edit"
+								checked>
+							<label class="form-check-label" for="tool-is-main-edit">Is main</label>
+						</div>
+					</div>
+					<div>
+						<ul class="list-group" id="variations-section-edit">
+						</ul>
+						<!-- <li class="list-group-item"> -->
+						<button type="button" class="btn btn-primary bi bi-plus-lg  mt-3"
+							onclick="addVariationControl(this,'edit','Edit')"></button>
+						<!-- </li> -->
+					</div>
+
+					<!-- </div> -->
+					<div class="d-flex pt-3">
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="mx-2 spinner-border text-success d-none" role="status" id="loading-edit"></div>
+						<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="success-upload-edit"></i>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="container my-5"></div>
+
+	<footer class="bg-light py-2 mt-5">
+		<div class="container">
+			<div class="d-flex justify-content-between">
+				<span>Developed by Omar Hesham</span>
+				<span>v1.225</span>
+			</div>
+		</div>
+	</footer>
+
+	<!-- default version -->
+	<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.14.2/dist/algoliasearch.umd.js"
+		integrity="sha256-DRnoUQAweVMsVPRMhfHC5zPqUP8s2fWUqD39yBsWg+M=" crossorigin="anonymous"></script>
+	<script src="dist/adminDatabase.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/main.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.mini.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<title>Purchases</title>
+</head>
+
+<body class="bg-light">
+	<div class="container" style="min-height: 100vh;">
+		<div class="row">
+			<div class="col-12 col-md-5">
+				<div class="container-fluid py-3 px-0">
+					<a class="btn btn-success my-3" href="adminPage.html">Data entry</a>
+					<img src="images/logo big.png" class="img-fluid col-6" alt="tools logo">
+					<!-- <div class="row">
+					</div> -->
+				</div>
+
+				<form id="fetching-constraints">
+
+					<div class="row align-items-center">
+						<div class="col p-0">
+							<input type="checkbox" class="btn-check" onclick="selectOnlyPending()" name="onlyPending" id="btnradio1"
+								autocomplete="off" value="pending">
+							<label class="btn btn-outline-primary btn-lg m-auto" for="btnradio1">Only Pending</label>
+						</div>
+
+						<!-- <div class="col p-0 d-flex gap-3 flex-nowrap justify-content-end"> -->
+						<div class="col btn-group justify-content-end" role="group">
+							<div class="dropdown btn-group">
+								<button
+									class="btn btn-outline-primary btn-sm dropdown-toggle text-capitalize d-flex align-items-center text-start"
+									style="width: 120px;" type="button" data-bs-toggle="dropdown" id="time-dropdown-menu">
+									<i class="bi bi-calendar-event me-auto"></i> Yesterdaya
+								</button>
+								<ul class="dropdown-menu">
+									<div role="group">
+										<li>
+											<input type="radio" class="btn-check" onclick="changeTime()" name="purchaseTime" id="btnradio11"
+												autocomplete="off" checked value="yesterday">
+											<label class="dropdown-item text-capitalize" for="btnradio11">Yesterday</label>
+										</li>
+
+										<li>
+											<input type="radio" class="btn-check" onclick="changeTime()" name="purchaseTime" id="btnradio12"
+												autocomplete="off" value="last Week">
+											<label class="dropdown-item text-capitalize" for="btnradio12">Last Week</label>
+										</li>
+
+										<li>
+											<input type="radio" class="btn-check" onclick="changeTime()" name="purchaseTime" id="btnradio13"
+												autocomplete="off" value="last Month">
+											<label class="dropdown-item text-capitalize" for="btnradio13">Last Month</label>
+										</li>
+
+										<li>
+											<input type="radio" class="btn-check" onclick="changeTime()" name="purchaseTime" id="btnradio14"
+												autocomplete="off" value="all">
+											<label class="dropdown-item text-capitalize" for="btnradio14">All</label>
+										</li>
+									</div>
+								</ul>
+							</div>
+							<!-- </div>
+
+							<div class="col p-0"> -->
+							<div class="dropdown btn-group">
+								<button class="btn btn-outline-primary btn-sm d-flex text-capitalize align-items-center dropdown-toggle"
+									style="width: 120px;" type="button" data-bs-toggle="dropdown" id="type-dropdown-menu">
+									<i class="bi bi-filter-left me-auto"></i> Pecancelle
+								</button>
+								<ul class="dropdown-menu">
+									<div role="group">
+										<li>
+											<input type="radio" class="btn-check" onclick="changeType()" name="purchaseType" id="btnradio2"
+												autocomplete="off" checked value="pending">
+											<label class="dropdown-item text-capitalize" for="btnradio2">pending</label>
+										</li>
+
+										<li>
+											<input type="radio" class="btn-check" onclick="changeType()" name="purchaseType" id="btnradio3"
+												autocomplete="off" value="cancelled">
+											<label class="dropdown-item text-capitalize" for="btnradio3">cancelled</label>
+										</li>
+
+										<!-- <li>
+											<input type="radio" class="btn-check" onclick="changeType()" name="purchaseType" id="btnradio4"
+												autocomplete="off" value="archived">
+											<label class="dropdown-item text-capitalize" for="btnradio4">archived</label>
+										</li> -->
+
+										<li>
+											<input type="radio" class="btn-check" onclick="changeType()" name="purchaseType" id="btnradio5"
+												autocomplete="off" value="accepted">
+											<label class="dropdown-item text-capitalize" for="btnradio5">accepted</label>
+										</li>
+
+										<li>
+											<input type="radio" class="btn-check" onclick="changeType()" name="purchaseType" id="btnradio6"
+												autocomplete="off" value="all">
+											<label class="dropdown-item text-capitalize" for="btnradio6">All</label>
+										</li>
+									</div>
+								</ul>
+							</div>
+						</div>
+						<p class="m-0" id="found-items"></p>
+					</div>
+				</form>
+				<div class="holder-test" style="height: 380px; overflow-y: auto;">
+					<div class="input-group mb-0">
+						<input type="text" id="purchase-filter" placeholder="Filter Purchases..." class="form-control">
+						<button class="btn btn-outline-secondary" type="button" id="case-sensitive-toggle">Case Insensitive</button>
+					</div>
+					<ul class="list-group py-3" id="purchases-ids"></ul>
+				</div>
+			</div>
+
+			<div class="col-md-7 col-12">
+				<div class="m-3 overflow-hidden">
+					<div class="container py-4">
+						<div class="display-5">Purchase details</div>
+					</div>
+					<div id="purchase-details" class="d-none">
+						<!-- <p class="m-1" id="purchase-order-id-display"><strong>Client id:</strong> </p> -->
+						<!-- <p class="m-1" id="purchase-order-time"><strong>Ordered at:</strong></p> -->
+						<!-- <p class="m-1" id="purchase-client-id"><strong>Client id:</strong> </p> -->
+						<!-- <p class="m-1" id="purchase-client-name"><strong>Client id:</strong> </p> -->
+						<!-- <p class="m-1" id="purchase-client-number"><strong>Client id:</strong> </p> -->
+						<!-- <p class="m-1" id="purchase-status"><strong>Status:</strong> <em class="text-primary"></em></p> -->
+						<div class="display-6 pb-3">Order</div>
+						<div class="table-responsive">
+							<table class="table table-responsive align-baseline">
+								<thead class="table-info">
+									<tr>
+										<th class="w-75">Tool</th>
+										<th>Price</th>
+										<th class="w-25">Qty</th>
+										<th>Total</th>
+									</tr>
+								</thead>
+								<tbody id="purchase-table"></tbody>
+							</table>
+						</div>
+						<p class="h6" id="purchase-subtotal"><strong>Subtotal:</strong></p>
+						<p class="h6" id="purchase-shipping"><strong>Shipping:</strong></p>
+						<p class="h5" id="purchase-total"><strong>Order Total:</strong></p>
+						<div class="d-flex gap-1 justify-content-end button-group">
+							<button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#cancel-modal">Cancel
+								Order</button>
+							<button class="btn btn-outline-success" data-bs-toggle="modal"
+								data-bs-target="#accept-modal">Accept</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div id="change-user-name-modal" class="modal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<form id="change-user-name-form" class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-primary">User name</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<!-- <div class="modal-body">
+					<p>Enter User name...</p>
+					<input type="text" name="inputUserName" id="">
+				</div> -->
+				<div class="input-group px-5 py-3">
+					<span class="input-group-text" id="basic-addon1">@</span>
+					<input type="text" class="form-control w-50" placeholder="Enter User name..." aria-label="Username"
+						aria-describedby="basic-addon1" name="userNameText">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-primary">Ok</button>
+					<!-- onclick="confirmChangeUserName()" -->
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="cancel-modal" class="modal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-danger">Cancel order</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Do you really want to cancel the Order?.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-bs-dismiss="modal">No</button>
+					<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"
+						onclick="cancelOrder()">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="accept-modal" class="modal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-success">Accept order</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to accept the Order?.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">No</button>
+					<button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="acceptOrder()">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<footer class="bg-light mt-auto py-2">
+		<div class="container">
+			<span>Developed by Omar Hesham</span>
+		</div>
+	</footer>
+	<!-- <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+	<script src="dist/bootstrap.min.js"></script>
+	<script src="dist/purchases.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></scrip> -->
+</body>
+
+</html>
