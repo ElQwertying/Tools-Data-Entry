@@ -31,7 +31,11 @@
 				</div>
 
 				<div class="py-3 gap-3 d-flex flex-column mx-5">
-
+					
+					<input type="file" id="tool-img-file" style="display:none" accept="image/webp"
+						onchange="inputNewToolChanged(this)">
+					<label for="tool-img-file" type="button" class="btn btn-primary" onclick="addTool()">Add Tool</label>
+					
 					<!-- TO BE HIDDEN FROM NORMAL -->
 					<!-- START HIDE FROM HERE -->
 					<!-- <input type="file" id="database-file" accept="xls,xlsx" class="d-none" onchange="uploadDatabase(this)">
@@ -40,9 +44,6 @@
 						<button class="btn btn-success" onclick="startUpload()"><i class="bi bi-upload"></i></button>
 					</div>
 
-					<input type="file" id="tool-img-file" style="display:none" accept="image/webp"
-						onchange="inputNewToolChanged(this)">
-					<label for="tool-img-file" type="button" class="btn btn-primary" onclick="addTool()">Add Tool</label>
 
 					<input type="file" id="variations-file" accept="xls,xlsx" class="d-none" onchange="getVariations(this)">
 
