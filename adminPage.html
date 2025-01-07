@@ -31,7 +31,10 @@
 				</div>
 
 				<div class="py-3 gap-3 d-flex flex-column mx-5">
-					<input type="file" id="database-file" accept="xls,xlsx" class="d-none" onchange="uploadDatabase(this)">
+
+					<!-- TO BE HIDDEN FROM NORMAL -->
+					<!-- START HIDE FROM HERE -->
+					<!-- <input type="file" id="database-file" accept="xls,xlsx" class="d-none" onchange="uploadDatabase(this)">
 					<div class="d-flex input-group">
 						<label for="database-file" class="btn btn-primary input-group-text form-control">Upload database</label>
 						<button class="btn btn-success" onclick="startUpload()"><i class="bi bi-upload"></i></button>
@@ -39,15 +42,31 @@
 
 					<input type="file" id="tool-img-file" style="display:none" accept="image/webp"
 						onchange="inputNewToolChanged(this)">
-					<!-- <label for="tool-img-file" type="button" class="btn btn-primary" onclick="addTool()">Add Tool</label> -->
+					<label for="tool-img-file" type="button" class="btn btn-primary" onclick="addTool()">Add Tool</label>
 
 					<input type="file" id="variations-file" accept="xls,xlsx" class="d-none" onchange="getVariations(this)">
+
 					<div class="d-flex input-group">
-						<label for="variations-file" class="btn btn-primary input-group-text form-control bi bi-filetype-xlsx"> Upload
+						<label for="variations-file" class="btn btn-primary input-group-text form-control bi bi-filetype-xlsx">
+							Upload
 							Variations</label>
 						<button class="btn btn-success" onclick="updateVariations()"><i class="bi bi-box-arrow-up"></i></button>
 					</div>
 
+					<input type="file" id="tools-group-file" accept="xls,xlsx" class="d-none" onchange="getGroupToolsFile(this)">
+					<div class="d-flex input-group">
+						<label class="input-group-text form-control btn btn-primary" for="tools-group-file"> Fix tools group
+						</label>
+						<button class="btn btn-success bi bi-wrench" onclick="fixToolsGroupData()"></button>
+						<button class="btn btn-primary" onclick="fixToolsVariations()" disabled> Fix tools variations </button>
+					</div>
+
+					<input type="text" id="tools-variations-output" class="form-control" disabled readonly
+						placeholder="Press fix tools variations to see the output" onclick="this.select();"> -->
+					<!-- END HIDE FROM HERE -->
+
+
+					<label for="tool-edit-code" class="form-label">Tool code for edit</label>
 					<form class="input-group" id="toolCodeForm">
 						<input type="number" name="toolCode" id="tool-edit-code" class="form-control" onclick="this.select();">
 						<button type="submit" class="btn btn-primary" id="edit-button"><i class="bi bi-pencil-fill"></i></button>
