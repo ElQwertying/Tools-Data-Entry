@@ -17,12 +17,15 @@
 		<div class="row">
 			<div class="col-12 col-md-5">
 				<div class="container-fluid py-5 px-0">
-					<div class="row justify-content-around p-2 gap-2">
-						<button class="btn btn-warning text-dark col-3" id="sign-out-btn">
+					<div class="row justify-content-around p-2 gap-3">
+
+						<!-- TO BE HIDDEN FROM NORMAL -->
+						<!-- <button class="btn btn-warning text-dark col-3" id="sign-out-btn">
 							<i class="bi bi-box-arrow-left"></i> Sign out
-						</button>
-						<a class="btn btn-success col-4" href="purchases.html">Purchases</a>
-						<a class="btn btn-success col-4" href="coreDatabase.html">Core Data</a>
+						</button> -->
+
+						<a class="btn btn-success col" href="purchases.html">Purchases</a>
+						<a class="btn btn-success col" href="coreDatabase.html">Core Data</a>
 					</div>
 					<div class="row">
 						<img src="images/logo big.png" class="img-fluid col-6" alt="tools logo">
@@ -31,11 +34,11 @@
 				</div>
 
 				<div class="py-3 gap-3 d-flex flex-column mx-5">
-					
+
 					<input type="file" id="tool-img-file" style="display:none" accept="image/webp"
 						onchange="inputNewToolChanged(this)">
 					<label for="tool-img-file" type="button" class="btn btn-primary" onclick="addTool()">Add Tool</label>
-					
+
 					<!-- TO BE HIDDEN FROM NORMAL -->
 					<!-- START HIDE FROM HERE -->
 					<!-- <input type="file" id="database-file" accept="xls,xlsx" class="d-none" onchange="uploadDatabase(this)">
