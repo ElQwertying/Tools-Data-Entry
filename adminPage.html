@@ -70,26 +70,29 @@
 					<!-- END HIDE FROM HERE -->
 
 
-					<label for="tool-edit-code" class="form-label">Tool code for edit</label>
-					<form class="input-group" id="toolCodeForm">
-						<input type="number" name="toolCode" id="tool-edit-code" class="form-control" onclick="this.select();">
-						<button type="submit" class="btn btn-primary" id="edit-button"><i class="bi bi-pencil-fill"></i></button>
-					</form>
-					<div id="edit-no-code" class="form-text text-danger d-none">Please enter tool code to edit.</div>
-					<div id="edit-no-path" class="form-text text-danger d-none">Tool not found.</div>
-					<!-- <div class="d-flex mt-3">
-						<button class="btn btn-primary" onclick="checkCategories()">Change categories to Arabic</button>
-						<div class="mx-2 spinner-border text-success d-none" role="status" id="categ-check"></div>
-						<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="categ-check-ok"></i>
+					<div class="row">
+						<label for="tool-edit-code" class="form-label">Tool code for edit</label>
+						<form class="input-group" id="toolCodeForm">
+							<input type="number" name="toolCode" id="tool-edit-code" class="form-control" onclick="this.select();">
+							<button type="submit" class="btn btn-primary" id="edit-button"><i class="bi bi-pencil-fill"></i></button>
+						</form>
+						<div id="edit-no-code" class="form-text text-danger d-none">Please enter tool code to edit.</div>
+						<div id="edit-no-path" class="form-text text-danger d-none">Tool not found.</div>
 					</div>
 
-					<div class="d-flex mt-3">
-						<button class="btn btn-primary" onclick="checkCategoriesEn()">Change categories to English</button>
-						<div class="mx-2 spinner-border text-success d-none" role="status" id="categ-check-en"></div>
-						<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="categ-check-en-ok"></i>
-					</div> -->
-
+					<div class="row">
+						<a class="btn btn-success" href="collection.html">Edit Groups</a>
+						<!-- <label for="tool-group-code" class="form-label">Tool code for group</label>
+						<form class="input-group" id="toolCodeGroupForm">
+							<input type="number" name="toolCode" id="tool-group-code" class="form-control">
+							<button type="submit" class="btn btn-success" id="group-button" name="groupButton"><i class="bi bi-pencil-fill"></i></button>
+						</form>
+						<div id="group-no-code" class="form-text text-danger d-none">Please enter tool code that has a group.</div>
+						<div id="group-no-path" class="form-text text-danger d-none">Tool not found.</div> -->
+					</div>
+					
 				</div>
+				<div class="row" id="groupData"></div>
 			</div>
 
 			<div class="col-md-7 col-12">
