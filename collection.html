@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Edit Tools</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
 
@@ -12,7 +13,10 @@
 	<div class="container pt-3">
 		<!-- Step 1: Enter SKU -->
 		<div class="row mb-4">
-			<label for="skuInput" class="form-label">Enter SKU:</label>
+			<div class="d-flex flex-column justify-content-start align-items-baseline gap-3">
+				<a href="adminPage.html" class="btn btn-success py-0"> Back</a>
+				<label for="skuInput" class="form-label">Enter SKU:</label>
+			</div>
 			<form class="input-group" id="toolCodeGroupForm">
 				<input type="text" id="skuInput" class="form-control" placeholder="e.g., 1032" name="toolCode">
 				<button id="fetchDataBtn" class="btn btn-primary" name="groupButton">Fetch Tool Data</button>
@@ -23,11 +27,14 @@
 
 		<!-- Step 4: Save Changes -->
 		<div class="row">
-			<div class="col-12 text-center d-none" id="saveChangesDiv">
+			<div class="col-12 d-flex ms-5 ps-5 text-center justify-content-start align-items-center gap-3 d-none" id="saveChangesDiv">
 				<button class="btn btn-secondary my-3" id="addCodeBtn" data-bs-toggle="modal" data-bs-target="#addToolModal">
 					Add another Tool</button>
 				<button class="btn btn-success my-3" id="saveChangesBtn">Save Changes</button>
-				<lead class="text-center ps-3 text-decoration-underline">18</lead>
+				<lead class="text-center ps-3 text-decoration-underline" id="tools-count"></lead>
+				<div class="spinner-grow d-none" id="savingSpinner"></div>
+				<div class="bi bi-check-lg d-none" id="saveOkCheck"></div>
+
 			</div>
 		</div>
 
@@ -35,7 +42,7 @@
 		<div class="row row-cols-2" id="groupData"></div>
 
 	</div>
- <!-- style="display: block;" -->
+	<!-- style="display: block;" -->
 	<div class="modal" tabindex="-1" id="addToolModal">
 		<div class="modal-dialog">
 			<form id="addToolToGroupForm">
@@ -53,7 +60,7 @@
 					</div>
 					<button type="submit" class="btn btn-primary m-auto mb-3">Add tool</button>
 					<div id="addToolSpinner"
-					 class="position-absolute d-flex align-items-center justify-content-center w-100 h-100 d-none">
+						class="position-absolute d-flex align-items-center justify-content-center w-100 h-100 d-none">
 						<div class="spinner-border text-info" style="width: 4rem; height: 4rem;" role="status">
 						</div>
 					</div>
