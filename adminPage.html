@@ -129,10 +129,19 @@
 							</div>
 
 
-							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" role="switch" name="toolStockNew" id="tool-stock-new"
-									checked>
-								<label class="form-check-label" for="tool-stock-new">In Stock</label>
+							<div class="container row align-items-baseline">
+								<div class="form-check form-switch col">
+									<input class="form-check-input" type="checkbox" role="switch" name="toolStockNew" id="tool-stock-new"
+										checked>
+									<label class="form-check-label" for="tool-stock-new">In Stock</label>
+
+								</div>
+
+								<div class="d-flex mt-3 col">
+									<button type="submit" class="btn btn-primary">Submit</button>
+									<div class="mx-2 spinner-border text-success d-none" role="status" id="loading-new"></div>
+									<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="success-upload-new"></i>
+								</div>
 							</div>
 
 							<img id="placeholder" src="images/download.png" class="p-5 img-fluid" alt="tool img"
@@ -203,12 +212,6 @@
 					</div>
 
 
-					<div class="d-flex mt-3">
-						<button type="submit" class="btn btn-primary">Submit</button>
-						<div class="mx-2 spinner-border text-success d-none" role="status" id="loading-new"></div>
-						<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="success-upload-new"></i>
-
-					</div>
 
 				</form>
 
@@ -241,12 +244,19 @@
 								<button class="btn btn-warning" type="button" onclick=""><i class="bi bi-pencil-fill"></i></button>
 							</div>
 
-							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" role="switch" name="toolStockEdit" id="tool-stock-edit"
-									checked>
-								<label class="form-check-label" for="tool-stock-edit">In Stock</label>
-							</div>
+							<div class="container row align-items-baseline">
+								<div class="form-check form-switch col">
+									<input class="form-check-input" type="checkbox" role="switch" name="toolStockEdit"
+										id="tool-stock-edit" checked>
+									<label class="form-check-label" for="tool-stock-edit">In Stock</label>
+								</div>
 
+								<div class="d-flex pt-3 col">
+									<button type="submit" class="btn btn-primary">Submit</button>
+									<div class="mx-2 spinner-border text-success d-none" role="status" id="loading-edit"></div>
+									<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="success-upload-edit"></i>
+								</div>
+							</div>
 							<!-- <div class="input-group mb-3">
 								<input type="checkbox" id="tool-stock-edit" name="toolStockEdit" class="form-control">
 								<label for="tool-stock-edit">In stock</label>
@@ -330,11 +340,7 @@
 					</div>
 
 					<!-- </div> -->
-					<div class="d-flex pt-3">
-						<button type="submit" class="btn btn-primary">Submit</button>
-						<div class="mx-2 spinner-border text-success d-none" role="status" id="loading-edit"></div>
-						<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="success-upload-edit"></i>
-					</div>
+
 				</form>
 			</div>
 		</div>
