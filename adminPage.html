@@ -106,6 +106,12 @@
 						</div>
 						<div class="col-7">
 
+							<!-- <div class="form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch" name="toolOriginalNew"
+									id="tool-original-new">
+								<label class="form-check-label" for="tool-original-new">Original Item</label>
+							</div> -->
+
 							<label for="toolBrandNewLabel" class="form-text text-secondary">Tool Brand</label>
 							<div class="input-group mb-3">
 								<input type="text" name="toolBrandNew" id="toolBrandNewLabel" class="form-control"
@@ -129,15 +135,23 @@
 							</div>
 
 
-							<div class="container row align-items-baseline">
-								<div class="form-check form-switch col">
-									<input class="form-check-input" type="checkbox" role="switch" name="toolStockNew" id="tool-stock-new"
-										checked>
-									<label class="form-check-label" for="tool-stock-new">In Stock</label>
+							<div class="container row align-items-center px-0">
 
+								<div class="col d-flex flex-column gap-2">
+									<div class="form-check form-switch">
+										<input class="form-check-input" type="checkbox" role="switch" name="toolStockNew"
+											id="tool-stock-new" checked>
+										<label class="form-check-label" for="tool-stock-new">In Stock</label>
+									</div>
+
+									<div class="form-check form-switch">
+										<input class="form-check-input" type="checkbox" role="switch" name="toolOriginalNew"
+											id="tool-original-new">
+										<label class="form-check-label" for="tool-original-new">Original</label>
+									</div>
 								</div>
 
-								<div class="d-flex mt-3 col">
+								<div class="d-flex col">
 									<button type="submit" class="btn btn-primary">Submit</button>
 									<div class="mx-2 spinner-border text-success d-none" role="status" id="loading-new"></div>
 									<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="success-upload-new"></i>
@@ -226,6 +240,12 @@
 						</div>
 						<div class="col-md-7 col-12">
 
+							<!-- <div class="form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch" name="toolOriginalEdit"
+									id="tool-original-edit">
+								<label class="form-check-label" for="tool-original-edit">Original Item</label>
+							</div> -->
+
 							<div id="toolBrandEditLabel" class="form-text text-secondary">Tool Brand</div>
 							<div class="input-group mb-3">
 								<input type="text" name="toolBrandEdit" class="form-control" placeholder="Brand ..."
@@ -244,14 +264,23 @@
 								<button class="btn btn-warning" type="button" onclick=""><i class="bi bi-pencil-fill"></i></button>
 							</div>
 
-							<div class="container row align-items-baseline">
-								<div class="form-check form-switch col">
-									<input class="form-check-input" type="checkbox" role="switch" name="toolStockEdit"
-										id="tool-stock-edit" checked>
-									<label class="form-check-label" for="tool-stock-edit">In Stock</label>
+							<div class="container row align-items-center px-0">
+
+								<div class="col d-flex flex-column gap-2">
+									<div class="form-check form-switch">
+										<input class="form-check-input" type="checkbox" role="switch" name="toolStockEdit"
+											id="tool-stock-edit" checked>
+										<label class="form-check-label" for="tool-stock-edit">In Stock</label>
+									</div>
+
+									<div class="form-check form-switch">
+										<input class="form-check-input" type="checkbox" role="switch" name="toolOriginalEdit"
+											id="tool-original-edit">
+										<label class="form-check-label" for="tool-original-edit">Original</label>
+									</div>
 								</div>
 
-								<div class="d-flex pt-3 col">
+								<div class="d-flex col">
 									<button type="submit" class="btn btn-primary">Submit</button>
 									<div class="mx-2 spinner-border text-success d-none" role="status" id="loading-edit"></div>
 									<i class="mx-2 bi bi-check-lg text-success fs-4 d-none" id="success-upload-edit"></i>
